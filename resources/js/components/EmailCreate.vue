@@ -23,7 +23,7 @@
 
 <script>
     export default {
-        name: 'send-mail',
+        name: 'email-create',
         data: () => ({
             to: '',
             subject: '',

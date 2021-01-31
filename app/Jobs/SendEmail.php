@@ -37,6 +37,7 @@ class SendEmail implements ShouldQueue
     /**
      * Execute the job.
      *
+     *
      * @param  MailRepository  $mailRepository
      * @return void
      * @throws \SendGrid\Mail\TypeException

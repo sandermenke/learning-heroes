@@ -1,8 +1,8 @@
 import App from "./components/App"
 import Vue from "vue"
 import VueRouter from "vue-router"
-import MailsList from "./components/MailsList"
-import SendMail from "./components/SendMail"
+import EmailCreate from "./components/EmailCreate"
+import EmailList from "./components/EmailList"
 
 require('./bootstrap');
 
@@ -14,12 +14,12 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'home',
-            component: MailsList,
+            component: EmailList,
         },
         {
-            path: '/mail/send',
-            name: 'send-mail',
-            component: SendMail,
+            path: '/mail/create',
+            name: 'email-create',
+            component: EmailCreate,
         }
     ],
 })
