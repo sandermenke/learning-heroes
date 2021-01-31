@@ -38,7 +38,7 @@ class MailTest extends TestCase
     public function test_mail_can_be_created()
     {
         $this->post(route('mail.store', [
-            'to' => 'test@example.org',
+            'emails' => 'test@example.org',
             'subject' => 'Test',
             'message' => 'Test message',
         ]));
