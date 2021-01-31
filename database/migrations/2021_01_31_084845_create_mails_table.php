@@ -20,6 +20,7 @@ class CreateMailsTable extends Migration
             $table->string('message_id');
             $table->enum('status', Mail::STATUSES);
             $table->string('to');
+            $table->string('subject');
             $table->longText('message');
             $table->timestamps();
         });
