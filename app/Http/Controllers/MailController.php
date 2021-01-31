@@ -39,7 +39,11 @@ class MailController extends Controller
      */
     public function store(MailRequest $request)
     {
-        SendEmail::dispatch($request->to, $request->subject, $request->message);
+        $emails = explode(',', str_replace(' ', '', $request->emails));
+
+        foreach ($emails as $email) {
+            SendEmail::dispatch($email, $request->subject, $request->message);
+        }
 
         return response('Mail has been queued.');
     }
