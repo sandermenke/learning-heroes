@@ -35,11 +35,13 @@ class MailController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  MailRequest  $request
-     * @return \Illuminate\Foundation\Bus\PendingDispatch
+     * @return \Illuminate\Http\Response
      */
     public function store(MailRequest $request)
     {
-        return SendEmail::dispatch($request->to, $request->subject, $request->message);
+        SendEmail::dispatch($request->to, $request->subject, $request->message);
+
+        return response('Mail has been queued.');
     }
 
     /**
