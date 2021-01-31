@@ -2,16 +2,17 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendEmail;
 use Illuminate\Console\Command;
 
-class SendEmail extends Command
+class SendEmails extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'email:send';
+    protected $signature = 'email:send {--to=} {--subject=} {--message=}';
 
     /**
      * The console command description.
@@ -36,6 +37,6 @@ class SendEmail extends Command
      */
     public function handle()
     {
-        \App\Jobs\SendEmail::dispatch('info@sandermenke.nl', 'Test', 'long message');
+        SendEmail::dispatch($this->option('to'), $this->option('subject'), $this->option('message'));
     }
 }
