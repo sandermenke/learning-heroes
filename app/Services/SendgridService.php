@@ -32,7 +32,7 @@ class SendgridService
         $this->email->setFrom(config('mail.from.address'), config('mail.from.name'));
         $this->email->setSubject($subject);
         $this->email->addTo($to);
-        $this->email->addContent('text/plain', $message);
+        $this->email->addContent('text/html', $message);
 
         $logData = [
             'to' => $to,

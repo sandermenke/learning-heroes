@@ -11,6 +11,14 @@
                     <label for="subject" class="form-label">Subject</label>
                     <input type="text" class="form-control" id="subject" v-model="subject" required>
                 </div>
+                <div class="mb-3">
+                    <label for="content_type" class="form-label">Content type</label>
+                    <select class="custom-select" id="content_type" v-model="contentType">
+                        <option value="text">Text</option>
+                        <option value="markdown">Markdown</option>
+                        <option value="html">HTML</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="message">Message</label>
                     <textarea class="form-control" id="message" rows="10" v-model="message" required></textarea>
@@ -22,16 +30,23 @@
 </template>
 
 <script>
+    import marked from 'marked'
+
     export default {
         name: 'email-create',
         data: () => ({
             to: '',
             subject: '',
             message: '',
+            contentType: 'text'
         }),
         methods: {
             sendEmail() {
                 if (!this.to || !this.subject || !this.message) return false
+
+                if (this.contentType !== 'html') {
+                    this.message = marked(this.message)
+                }
 
                 axios.post('/api/mail', {
                     to: this.to,

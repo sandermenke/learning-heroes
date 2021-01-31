@@ -1,7 +1,7 @@
 <template>
     <div class="card col-md-12">
         <div class="card-body">
-            <h1 class="card-title">Mails <router-link :to="{'name': 'create-email'}" class="float-right">+</router-link></h1>
+            <h1 class="card-title">Mails <router-link :to="{'name': 'email-create'}" class="float-right">+</router-link></h1>
             <table class="table">
                 <thead>
                 <tr>

@@ -39,7 +39,7 @@ class MailjetService
                         ],
                     ],
                     'Subject' => $subject,
-                    'TextPart' => $message,
+                    'HTMLPart' => $message,
                 ],
             ],
         ];
