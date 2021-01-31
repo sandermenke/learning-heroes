@@ -31,6 +31,8 @@
         }),
         methods: {
             sendEmail() {
+                if (!this.to || !this.subject || !this.message) return false
+
                 axios.post('/api/mail', {
                     to: this.to,
                     subject: this.subject,
