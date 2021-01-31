@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
 use SendGrid\Mail\Mail;
 
 class SendgridService
@@ -33,12 +34,22 @@ class SendgridService
         $this->email->addTo($to);
         $this->email->addContent('text/plain', $message);
 
+        $logData = [
+            'to' => $to,
+            'subject' => $subject,
+            'message' => $message,
+        ];
+
         try {
             $response = $this->client->send($this->email);
 
             $success = $response->statusCode() === 202;
+
+            Log::info('Sendgrid email send', $logData);
         } catch (\Exception $e) {
             $success = false;
+
+            Log::error('Sendgrid message failed: '.$e->getMessage(), $logData);
         }
 
         return [

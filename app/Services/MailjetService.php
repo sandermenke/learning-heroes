@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
 use Mailjet\Client;
 use Mailjet\Resources;
 
@@ -44,6 +45,17 @@ class MailjetService
         ];
 
         $response = $this->client->post(Resources::$Email, ['body' => $body]);
+        $logData = [
+            'to' => $to,
+            'subject' => $subject,
+            'message' => $message,
+        ];
+
+        if ($response->success()) {
+            Log::info('Mailjet message send', $logData);
+        } else {
+            Log::error('Mailjet message failed: '.$response->getReasonPhrase(), $logData);
+        }
 
         return [
             'success' => $response->success(),
