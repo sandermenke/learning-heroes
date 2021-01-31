@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('mail', MailController::class)->only(['index', 'store', 'show']);
+Route::apiResource('mail', MailController::class)->only(['index', 'store']);

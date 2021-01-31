@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Repository\MailRepositoryInterface;
 use App\Http\Requests\MailRequest;
 use App\Jobs\SendEmail;
-use App\Models\Mail;
 
 class MailController extends Controller
 {
@@ -46,16 +45,5 @@ class MailController extends Controller
         }
 
         return response('Mail has been queued.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Mail  $mail
-     * @return Mail
-     */
-    public function show(Mail $mail)
-    {
-        return $mail;
     }
 }
