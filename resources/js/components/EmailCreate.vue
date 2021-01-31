@@ -4,8 +4,8 @@
             <h1 class="card-title">Send Mail</h1>
             <form class="col-md-6">
                 <div class="mb-3">
-                    <label for="to" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="to" v-model="to" required>
+                    <label for="to" class="form-label">Email addresses (comma separated)</label>
+                    <input type="text" class="form-control" id="to" v-model="emails" required>
                 </div>
                 <div class="mb-3">
                     <label for="subject" class="form-label">Subject</label>
@@ -35,21 +35,21 @@
     export default {
         name: 'email-create',
         data: () => ({
-            to: '',
+            emails: '',
             subject: '',
             message: '',
             contentType: 'text'
         }),
         methods: {
             sendEmail() {
-                if (!this.to || !this.subject || !this.message) return false
+                if (!this.emails || !this.subject || !this.message) return false
 
                 if (this.contentType !== 'html') {
                     this.message = marked(this.message)
                 }
 
                 axios.post('/api/mail', {
-                    to: this.to,
+                    emails: this.emails,
                     subject: this.subject,
                     message: this.message,
                 }).then(() => this.$router.push({ name: 'home' }))
