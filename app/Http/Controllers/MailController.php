@@ -2,63 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\MailRepositoryInterface;
+use App\Http\Requests\MailRequest;
+use App\Jobs\SendEmail;
 use App\Models\Mail;
-use Illuminate\Http\Request;
 
 class MailController extends Controller
 {
+    private $mailRepository;
+
+    /**
+     * MailController constructor.
+     *
+     * @param  MailRepositoryInterface  $mailRepository
+     */
+    public function __construct(MailRepositoryInterface $mailRepository)
+    {
+        $this->mailRepository = $mailRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Support\Collection
      */
     public function index()
     {
-        //
+        return $this->mailRepository->all();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  MailRequest  $request
+     * @return \Illuminate\Foundation\Bus\PendingDispatch
      */
-    public function store(Request $request)
+    public function store(MailRequest $request)
     {
-        //
+        return SendEmail::dispatch($request->to, $request->subject, $request->message);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Mail  $mail
-     * @return \Illuminate\Http\Response
+     * @return Mail
      */
     public function show(Mail $mail)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Mail  $mail
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Mail  $mail
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Mail $mail)
-    {
-        //
+        return $mail;
     }
 }
