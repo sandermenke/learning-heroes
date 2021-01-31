@@ -31,7 +31,7 @@ class MailController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Dispatch the SendEmail job
      *
      * @param  MailRequest  $request
      * @return \Illuminate\Http\Response
