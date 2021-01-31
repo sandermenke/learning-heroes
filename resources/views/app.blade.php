@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
     <title>{{env('APP_NAME')}}</title>
 </head>
 <body>
-<div id="app">
-    <app></app>
+
+<div class="container p-5">
+    <div id="app">
+        <mails-list></mails-list>
+    </div>
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
