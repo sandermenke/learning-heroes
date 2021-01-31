@@ -17,13 +17,22 @@ class Mail extends Model
     const SERVICE_SENDGRID = 'sendgrid';
 
     const STATUSES = [
-      self::STATUS_FAILED,
-      self::STATUS_SUCCESS,
-      self::STATUS_QUEUED
+        self::STATUS_FAILED,
+        self::STATUS_SUCCESS,
+        self::STATUS_QUEUED,
     ];
 
     const SERVICES = [
         self::SERVICE_MAILJET,
         self::SERVICE_SENDGRID,
+    ];
+
+    protected $fillable = [
+        'to',
+        'subject',
+        'message',
+        'mailing_service',
+        'message_id',
+        'status',
     ];
 }

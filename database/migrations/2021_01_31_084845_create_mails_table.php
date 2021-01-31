@@ -17,7 +17,7 @@ class CreateMailsTable extends Migration
         Schema::create('mails', function (Blueprint $table) {
             $table->id();
             $table->string('mailing_service');
-            $table->string('message_id');
+            $table->string('message_id')->nullable();
             $table->enum('status', Mail::STATUSES);
             $table->string('to');
             $table->string('subject');
