@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Services\SendgridService;
 use App\Services\MailjetService;
 use Illuminate\Bus\Queueable;
 use App\Models\Mail;
@@ -38,6 +39,7 @@ class SendEmail implements ShouldQueue
      *
      * @param  MailRepository  $mailRepository
      * @return void
+     * @throws \SendGrid\Mail\TypeException
      */
     public function handle(MailRepository $mailRepository)
     {
@@ -56,6 +58,14 @@ class SendEmail implements ShouldQueue
             $mail->update([
                 'message_id' => $response['message_id'],
                 'status' => Mail::STATUS_SUCCESS,
+            ]);
+        } else {
+            $sgService = new SendgridService();
+            $response = $sgService->send($this->to, $this->subject, $this->message);
+
+            $mail->update([
+                'mailing_service' => Mail::SERVICE_SENDGRID,
+                'status' => $response['success'] ? Mail::STATUS_SUCCESS : Mail::STATUS_FAILED,
             ]);
         }
     }

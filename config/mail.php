@@ -6,6 +6,9 @@ return [
             'private_key' => env('MAILJET_PRIVATE_KEY'),
             'public_key' => env('MAILJET_PUBLIC_KEY'),
         ],
+        'sendgrid' => [
+            'api_key' => env('SENDGRID_KEY'),
+        ],
     ],
 
     /*

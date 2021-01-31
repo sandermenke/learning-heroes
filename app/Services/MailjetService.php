@@ -23,7 +23,7 @@ class MailjetService
      * @param  string  $message
      * @return array
      */
-    public function send(string $to, string $subject, string $message)
+    public function send(string $to, string $subject, string $message): array
     {
         $body = [
             'Messages' => [
