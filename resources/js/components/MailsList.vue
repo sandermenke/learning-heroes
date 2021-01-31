@@ -1,7 +1,7 @@
 <template>
     <div class="card col-md-12">
         <div class="card-body">
-            <h1 class="card-title">Mails</h1>
+            <h1 class="card-title">Mails <router-link :to="{'name': 'send-mail'}" class="float-right">+</router-link></h1>
             <table class="table">
                 <thead>
                 <tr>
@@ -48,6 +48,7 @@
                 if (str.length <= num) {
                     return str
                 }
+
                 return str.slice(0, num) + '...'
             }
         },

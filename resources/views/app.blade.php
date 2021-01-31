@@ -11,10 +11,8 @@
 </head>
 <body>
 
-<div class="container p-5">
-    <div id="app">
-        <mails-list></mails-list>
-    </div>
+<div id="app">
+    <app></app>
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
